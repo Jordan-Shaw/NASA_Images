@@ -10,6 +10,7 @@ export default function Search() {
   const [imageData, setImageData] = useState([]);
   const [textInput, setTextInput] = useState("");
   const [searchTerm, setSearchTerm] = useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (ref.current) {
@@ -17,16 +18,26 @@ export default function Search() {
       ref.current = false;
       api.getImageData(searchTerm).then(res => {
         setImageData(res);
+        setLoading(false);
       });
     }
   }, [searchTerm]);
 
-  const images = [];
-  for (let i = 0; i < 9; i++) {
-    images.push(
-      <ImageCard title={i} imageData={imageData[pageNumber * 9 + i]} />
-    );
+  let images;
+
+  if (loading) {
+    images = [<p>Loading...</p>]
+  } else {
+    images = [];
+
+    for (let i = 0; i < 9; i++) {
+      images.push(
+        <ImageCard title={i} imageData={imageData[pageNumber * 9 + i]} />
+      );
+    }
   }
+
+  
 
   const handleChange = event => {
     setTextInput(event.target.value);
