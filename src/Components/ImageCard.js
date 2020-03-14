@@ -1,7 +1,8 @@
 import React from "react";
 
 export default function ImageCard(props) {
-  const { title } = props;
+  const { title, imageData } = props;
+  console.log(imageData);
 
   return (
     <div className="imageCard">
