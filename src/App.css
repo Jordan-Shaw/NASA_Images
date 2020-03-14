@@ -3,3 +3,26 @@
   flex-direction: column;
   align-items: center;
 }
+
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nasaImage {
+  border: black;
+  width: 90%;
+}
+
+.imageCard {
+  width: 30%;
+  padding: 1.5%;
+}
+
+.imageList {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100vw;
+}
