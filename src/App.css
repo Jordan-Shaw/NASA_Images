@@ -2,22 +2,40 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.Header {
+  height: 10%;
 }
 
 .searchContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 90%;
+}
+
+.searchBar {
+  height: 10%;
 }
 
 .nasaImage {
   border: black;
-  width: 90%;
+  width: 60%;
+  height: 60%;
 }
 
 .imageCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   width: 30%;
-  padding: 1.5%;
+  padding-left: 1.5%;
+  padding-right: 1.5%;
+  height: 30%;
 }
 
 .imageList {
@@ -25,4 +43,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 100vw;
+  height: 90%;
+  padding: 0%;
+  margin: 0%;
 }
