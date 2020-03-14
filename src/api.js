@@ -1,5 +1,3 @@
-import axios from 'axios'
+import axios from "axios";
 
-const apiRoot = "https://images-api.nasa.gov"
-
-const getImage
+const apiRoot = "https://images-api.nasa.gov";
