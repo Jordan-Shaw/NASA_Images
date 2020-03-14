@@ -1,27 +1,31 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as api from "../api";
 import ImageCard from "./ImageCard";
+import PageChooser from "./PageChooser";
 
 export default function Search() {
+  console.log("render");
   const ref = useRef(false);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [pageNumber, setPageNumber] = useState(0);
   const [imageData, setImageData] = useState([]);
   const [textInput, setTextInput] = useState("");
   const [searchTerm, setSearchTerm] = useState();
 
   useEffect(() => {
     if (ref.current) {
+      console.log("request-sent");
+      ref.current = false;
       api.getImageData(searchTerm).then(res => {
         setImageData(res);
       });
-    } else {
-      ref.current = true;
     }
   }, [searchTerm]);
 
   const images = [];
   for (let i = 0; i < 9; i++) {
-    images.push(<ImageCard title={i} />);
+    images.push(
+      <ImageCard title={i} imageData={imageData[pageNumber * 9 + i]} />
+    );
   }
 
   const handleChange = event => {
@@ -29,6 +33,7 @@ export default function Search() {
   };
 
   const handleSubmit = event => {
+    ref.current = true;
     setSearchTerm(textInput);
     event.preventDefault();
   };
@@ -38,7 +43,6 @@ export default function Search() {
       <div className="searchBar">
         <form
           onSubmit={event => {
-            console.log("submitted");
             handleSubmit(event);
           }}
         >
@@ -56,6 +60,7 @@ export default function Search() {
           return image;
         })}
       </div>
+      <PageChooser setPageNumber={setPageNumber} pageNumber={pageNumber} />
     </div>
   );
 }
