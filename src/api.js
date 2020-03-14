@@ -14,3 +14,10 @@ export const getImageData = searchTerm => {
       return res.data.collection.items;
     });
 };
+
+export const getImageLink = nasa_id => {
+  return axios.get(`${apiRoot}/asset/${nasa_id}`).then(res => {
+    console.log(res);
+    return res.data.collection.items[0];
+  });
+};
