@@ -10,15 +10,17 @@ export default function Search() {
 
   return (
     <div className="searchContainer">
-      <form
-        onSubmit={event => {
-          console.log("submitted");
-          event.preventDefault();
-        }}
-      >
-        <input type="text" />
-        <input type="submit" value="Submit" />
-      </form>
+      <div className="searchBar">
+        <form
+          onSubmit={event => {
+            console.log("submitted");
+            event.preventDefault();
+          }}
+        >
+          <input type="text" />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
       <div className="imageList">
         {images.map(image => {
           return image;
