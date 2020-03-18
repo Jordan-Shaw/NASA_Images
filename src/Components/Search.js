@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import * as api from "../api";
-import ImageCard from "./ImageCard";
 import { validateImages } from "../utils";
-// import PageChooser from "./PageChooser";
+import ImageList from "./ImageList";
 
 export default function Search() {
   const ref = useRef(false);
@@ -34,29 +33,6 @@ export default function Search() {
     event.preventDefault();
   };
 
-  let images;
-
-  if (loading && ref.current === false) {
-    images = [<p key="default">Enter search term</p>];
-  } else if (loading) {
-    images = [<p key="default">Loading...</p>];
-  } else if (validatedData.valid) {
-    images = [];
-    for (let i = pageNumber * 9; i < pageNumber * 9 + 9; i++) {
-      if (validatedData.imageData[pageNumber * 9 + i]) {
-        images.push(
-          <ImageCard
-            title={i}
-            imageData={validatedData.imageData[pageNumber * 9 + i]}
-            key={validatedData.imageData[pageNumber * 9 + i].data[0].nasa_id}
-          />
-        );
-      }
-    }
-  } else {
-    images = [<p>No results found</p>];
-  }
-
   return (
     <div className="searchContainer">
       <div className="searchBar">
@@ -66,38 +42,35 @@ export default function Search() {
           }}
         >
           <input
+            className="textInput"
             type="text"
             onChange={event => {
               handleChange(event);
             }}
           />
-          <input type="submit" value="Submit" />
+          <input className="submitButton" type="submit" value="Search" />
         </form>
       </div>
-      <div className="imageList">
-        {images.map(image => {
-          return image;
-        })}
-      </div>
+      <ImageList pageNumber={pageNumber} searched={ref.current} loading={loading} validatedData={validatedData}/>
       <div className="pageChooser">
         <button
           onClick={() => {
-            // setLoading(true);
             setPageNumber(prevPageNumber => {
               return prevPageNumber - 1;
             });
           }}
+          className="pageButton"
         >
           Back
         </button>
-        <h3>Page: {pageNumber + 1}</h3>
+        <h3 className="pageNumber">Page: {pageNumber + 1}</h3>
         <button
           onClick={() => {
-            // setLoading(true);
             setPageNumber(prevPageNumber => {
               return prevPageNumber + 1;
             });
           }}
+          className="pageButton"
         >
           Forwards
         </button>
