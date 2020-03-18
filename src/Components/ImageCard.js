@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "@reach/router";
 
 export default function ImageCard(props) {
   const { imageData } = props;
@@ -14,18 +15,24 @@ export default function ImageCard(props) {
 
   useEffect(() => {
     setHref(link);
-  }, [link])
+  }, [link]);
+
+  console.log(imageData.data[0].nasa_id);
 
   if (imageData) {
+    const { nasa_id } = imageData.data[0];
     return (
       <div className="imageCard">
-        <img src={href} alt="box" className="nasaImage" />
+        <Link to={`${nasa_id}`}>
+          <img src={href} alt="box" className="nasaImage" />
+        </Link>
       </div>
     );
   } else {
-    return <div className="imageCard">
-      <p>search new image yo</p>
-    </div>;
+    return (
+      <div className="imageCard">
+        <p>empty slot...</p>
+      </div>
+    );
   }
-
 }
