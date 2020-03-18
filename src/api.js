@@ -11,7 +11,8 @@ export const getImageData = searchTerm => {
       }
     })
     .then(res => {
-      return res.data.collection.items;
+      const { items } = res.data.collection;
+      return items;
     });
 };
 
