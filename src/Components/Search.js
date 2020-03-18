@@ -20,7 +20,7 @@ export default function Search() {
         setLoading(false);
       });
     }
-  }, [searchTerm]);
+  }, [searchTerm, loading]);
 
   const handleChange = event => {
     setTextInput(event.target.value);
@@ -30,6 +30,7 @@ export default function Search() {
     ref.current = true;
     setLoading(true);
     setSearchTerm(textInput);
+    setPageNumber(0);
     event.preventDefault();
   };
 
@@ -79,7 +80,7 @@ export default function Search() {
         })}
       </div>
       <div className="pageChooser">
-        {/* <button
+        <button
           onClick={() => {
             // setLoading(true);
             setPageNumber(prevPageNumber => {
@@ -99,7 +100,7 @@ export default function Search() {
           }}
         >
           Forwards
-        </button> */}
+        </button>
       </div>
     </div>
   );
