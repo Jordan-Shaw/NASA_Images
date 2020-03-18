@@ -1,23 +1,31 @@
 import React, { useEffect, useState } from "react";
-import * as api from "../api";
 
 export default function ImageCard(props) {
-  // const { title } = props;
   const { imageData } = props;
-  // let nasa_id = imageData.data[0].nasa_id;
-  const {href} = imageData.links[0]
-  // const [href, setHref] = useState("");
 
-  // useEffect(() => {
-  //   api.getImageLink(nasa_id).then(res => {
-  //     const { href } = res;
-  //     setHref(href);
-  //   });
-  // });
+  let link;
+  if (imageData) {
+    link = imageData.links[0].href;
+  } else {
+    link = "";
+  }
 
-  return (
-    <div className="imageCard">
-      <img src={href} alt="box" className="nasaImage" />
-    </div>
-  );
+  const [href, setHref] = useState(link);
+
+  useEffect(() => {
+    setHref(link);
+  }, [link])
+
+  if (imageData) {
+    return (
+      <div className="imageCard">
+        <img src={href} alt="box" className="nasaImage" />
+      </div>
+    );
+  } else {
+    return <div className="imageCard">
+      <p>search new image yo</p>
+    </div>;
+  }
+
 }
