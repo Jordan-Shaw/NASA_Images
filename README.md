@@ -1,4 +1,6 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Background
+
+This project is a react frontend app which handles data served from [NASA Open APIs]('https://api.nasa.gov/')
 
 ## Available Scripts
 
