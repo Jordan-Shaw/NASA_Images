@@ -2,7 +2,7 @@
 
 ## Background
 
-This project is a react frontend app which handles data served from [NASA Open APIs](https://api.nasa.gov/). A hosted version of the app can be seen [here](https://nasa-images-js.herokuapp.com/). 
+This project is a react frontend app which handles data served from [NASA Open APIs](https://api.nasa.gov/). A hosted version of the app can be seen [here](https://nasa-images-js.herokuapp.com/). It was made ofor a Dev test so everyone keep your fingers crossed for me.
 
 ## Getting Started
 
